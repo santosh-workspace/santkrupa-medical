@@ -1,49 +1,60 @@
 import Link from "next/link";
+import { Cross, House, MapPin, Phone } from "lucide-react";
+import { SHOP_NAME } from "@/config/shop";
 
 export const metadata = {
-  title: "404 — Page Not Found",
-  description: "The page you are looking for does not exist.",
+  title: `पेज सापडले नाही | ${SHOP_NAME}`,
+  description: "मागितलेले पेज अस्तित्वात नाही. मुख्य पेजवर परत जा.",
 };
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-[100vh] flex-col bg-[#f5f5f5] px-6 py-10 text-[#1d1d1d] sm:px-10 lg:px-16">
-      <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-between">
-        <div className="pt-10 sm:pt-16">
-          <h1 className="max-w-3xl text-[3rem] leading-[1.06] tracking-[-0.06em] font-medium text-[#1f1f1f] sm:text-[4rem] lg:text-[5rem]">
-            This page doesn&apos;t exist
-          </h1>
-
-          <p className="mt-8 max-w-2xl text-[2rem] leading-[1.2] tracking-[-0.04em] text-[#1d1d1d] sm:text-[2.7rem]">
-            It may have been moved, removed, or never existed.
-          </p>
-
-          <div className="mt-10">
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center rounded-xl bg-[#2b2b2b] px-7 py-4 text-[1.1rem] font-semibold text-white shadow-[0_8px_20px_rgba(0,0,0,0.18)] transition hover:bg-[#1d1d1d]"
-            >
-              Go back
-            </Link>
-          </div>
-
-          <div className="mt-14 text-left text-[1.2rem] tracking-[0.18em] text-[#3a3a3a] sm:text-[1.6rem]">
-            <div className="font-light uppercase">404 NOT FOUND</div>
-            <div className="mt-3 font-mono text-[0.9rem] tracking-[0.04em] text-[#4b4b4b] sm:text-[1rem]">
-              b0m1 : 9srnc-1789461470918-40c03b018ac3
-            </div>
-          </div>
+    <main className="flex min-h-[80vh] items-center bg-[#fffdf9] px-4 py-16 sm:px-6">
+      <div className="mx-auto w-full max-w-xl text-center">
+        <span className="mx-auto grid size-14 place-items-center rounded-3xl bg-[#1c1917] text-[#feefdc]">
+          <Cross className="size-7" strokeWidth={2.5} aria-hidden />
+        </span>
+        <p className="mt-6 text-[13px] font-bold tracking-[0.2em] text-[#d96a12] uppercase">
+          ४०४ — पेज सापडले नाही
+        </p>
+        <h1 className="text-balance mt-3 text-3xl font-bold tracking-tight text-[#1c1917] sm:text-4xl">
+          हे पेज अस्तित्वात नाही
+        </h1>
+        <p className="mx-auto mt-4 max-w-md text-[15px] leading-8 text-[#57534e]">
+          आपण शोधत असलेला पत्ता बदलला असावा किंवा चुकीचा असावा. खालील
+          बटणांनी योग्य ठिकाणी जा.
+        </p>
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d96a12] px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_18px_40px_-16px_rgba(217,106,18,0.65)] transition hover:bg-[#b35410]"
+          >
+            <House className="size-4" aria-hidden />
+            होमवर जा
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-[#e7dcc8] bg-white px-7 py-3.5 text-[15px] font-semibold text-[#1c1917] transition hover:border-[#d96a12]/40 hover:bg-[#fff8f0]"
+          >
+            <Phone className="size-4" aria-hidden />
+            संपर्क करा
+          </Link>
         </div>
-
-        <footer className="mt-16 flex flex-wrap items-center gap-4 pb-4 text-[0.9rem] tracking-[0.28em] text-[#2d2d2d] uppercase sm:text-[1rem]">
-          <Link href="/" className="transition hover:text-[#000000]">
-            View documentation
+        <p className="mt-6 text-[13.5px] text-[#a8a29e]">
+          <Link href="/about" className="underline underline-offset-4 hover:text-[#1c1917]">
+            आमच्याबद्दल
           </Link>
-          <span className="text-[#7a7a7a]">/</span>
-          <Link href="/contact" className="transition hover:text-[#000000]">
-            Copy debug prompt
+          {" • "}
+          <Link
+            href="https://www.google.com/maps/search/?api=1&query=Santkrupa+Medical+Maharashtra"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 hover:text-[#1c1917]"
+          >
+            <MapPin className="mr-1 inline size-3.5 -translate-y-px" aria-hidden />
+            नकाशावर पहा
           </Link>
-        </footer>
+        </p>
       </div>
     </main>
   );
