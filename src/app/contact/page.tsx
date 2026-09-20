@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Clock, ExternalLink, Info, MapPin, Navigation, Phone } from "lucide-react";
+import { Clock, ExternalLink, Info, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import {
   GOOGLE_MAPS_EMBED_URL,
   GOOGLE_MAPS_URL,
   SHOP_ADDRESS,
+  SHOP_EMAIL,
   SHOP_NAME,
   SHOP_PHONE_DISPLAY,
   SHOP_PHONE_LINK,
@@ -16,9 +17,9 @@ import {
 } from "@/config/shop";
 
 export const metadata: Metadata = {
-  title: `${SHOP_NAME} — संपर्क व पत्ता | विश्वासू मेडिकल स्टोअर`,
+  title: "संतकृपा मेडिकल, आळंदी — संपर्क व पत्ता | २४ तास मेडिकल स्टोअर",
   description:
-    "दुकानाचा पत्ता, फोन, वेळ आणि नकाशावरील स्थान. भेट देण्यापूर्वी उत्पादनाची उपलब्धता फोनवरून तपासा.",
+    "Juna Charoli Road, Alandi Devachi — Santkrupa Medical & General Store. दररोज २४ तास खुले. फोन: +91 99229 69583. नकाशावरील स्थान व मार्ग येथे पहा.",
 };
 
 export default function ContactPage() {
@@ -84,6 +85,22 @@ export default function ContactPage() {
                         फोन नंबर लवकरच येथे अद्ययावत केला जाईल.
                       </span>
                     )}
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#fff8f0] text-[#b35410] ring-1 ring-[#f3e7d3]">
+                    <Mail className="size-5" aria-hidden />
+                  </span>
+                  <span>
+                    <span className="block text-[12.5px] font-bold tracking-[0.12em] text-[#78716c] uppercase">
+                      ईमेल
+                    </span>
+                    <a
+                      href={`mailto:${SHOP_EMAIL}`}
+                      className="mt-1 block text-[15px] font-medium break-all text-[#1c1917] underline decoration-[#fbc384] decoration-2 underline-offset-4 hover:text-[#b35410]"
+                    >
+                      {SHOP_EMAIL}
+                    </a>
                   </span>
                 </li>
                 <li className="flex gap-4">

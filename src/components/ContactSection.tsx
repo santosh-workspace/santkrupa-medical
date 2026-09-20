@@ -1,8 +1,10 @@
-import { Clock, ExternalLink, MapPin, Navigation, Phone } from "lucide-react";
+import { Clock, ExternalLink, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import {
+  GOOGLE_MAPS_EMBED_URL,
   GOOGLE_MAPS_URL,
   SHOP_ADDRESS,
+  SHOP_EMAIL,
   SHOP_NAME,
   SHOP_PHONE_DISPLAY,
   SHOP_PHONE_LINK,
@@ -86,6 +88,23 @@ export default function ContactSection({ compact = false }: { compact?: boolean 
                     </span>
                   </span>
                 </li>
+
+                <li className="flex gap-3.5 rounded-2xl border border-[#ece5d8] bg-white p-4">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#fff8f0] text-[#b35410] ring-1 ring-[#f3e7d3]">
+                    <Mail className="size-5" aria-hidden />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[13px] font-semibold tracking-wide text-[#78716c] uppercase">
+                      ईमेल
+                    </span>
+                    <a
+                      href={`mailto:${SHOP_EMAIL}`}
+                      className="mt-0.5 block truncate text-[15px] font-medium text-[#1c1917] underline decoration-[#fbc384] decoration-2 underline-offset-4 hover:text-[#b35410]"
+                    >
+                      {SHOP_EMAIL}
+                    </a>
+                  </span>
+                </li>
               </ul>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -122,7 +141,7 @@ export default function ContactSection({ compact = false }: { compact?: boolean 
             <div className="relative min-h-[320px] border-t border-[#ece5d8] lg:border-t-0 lg:border-l">
               <iframe
                 title={`${SHOP_NAME} — नकाशावरील स्थान`}
-                src="https://www.google.com/maps?q=Santkrupa+Medical+Maharashtra&output=embed"
+                src={GOOGLE_MAPS_EMBED_URL}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen

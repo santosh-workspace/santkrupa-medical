@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://santkrupa-medical.example.in";
   const now = new Date();
   return [
-    { url: `${base}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
   ];
 }

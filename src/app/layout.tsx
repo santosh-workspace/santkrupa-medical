@@ -3,7 +3,23 @@ import { Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { SHOP_NAME, SHOP_NAME_EN } from "@/config/shop";
+import {
+  GOOGLE_MAPS_URL,
+  SHOP_CITY,
+  SHOP_COUNTRY,
+  SHOP_DISTRICT,
+  SHOP_EMAIL,
+  SHOP_HOURS_CLOSE,
+  SHOP_HOURS_OPEN,
+  SHOP_LOCALITY,
+  SHOP_NAME,
+  SHOP_NAME_EN,
+  SHOP_PHONE_LINK,
+  SHOP_PIN,
+  SHOP_STATE,
+  SHOP_STREET,
+} from "@/config/shop";
+import { SITE_LANGUAGES, SITE_LOCALE, SITE_URL } from "@/config/site";
 
 const devanagari = Noto_Sans_Devanagari({
   subsets: ["devanagari", "latin"],
@@ -12,36 +28,66 @@ const devanagari = Noto_Sans_Devanagari({
   display: "swap",
 });
 
+const SEO_TITLE = "संतकृपा मेडिकल अँड जनरल स्टोअर, आळंदी | २४ तास मेडिकल स्टोअर";
+const SEO_DESCRIPTION =
+  "आळंदी देवाची येथील विश्वासू २४ तास मेडिकल स्टोअर — Santkrupa Medical & General Store. औषधे, हेल्थकेअर व दैनंदिन उत्पादने. फोन: +91 99229 69583.";
+
 export const metadata: Metadata = {
-  title: `${SHOP_NAME} | विश्वासू मेडिकल स्टोअर`,
-  description:
-    "आपल्या परिसरातील विश्वासू मेडिकल स्टोअर. औषधे, हेल्थकेअर आणि दैनंदिन आरोग्यविषयक आवश्यक उत्पादने — उपलब्धतेनुसार एकाच ठिकाणी.",
+  title: SEO_TITLE,
+  description: SEO_DESCRIPTION,
   keywords: [
-    "मेडिकल स्टोअर",
-    "औषध दुकान",
-    "फार्मसी",
-    "हेल्थकेअर",
-    SHOP_NAME_EN,
-    "medical store Maharashtra",
+    "मेडिकल स्टोअर आळंदी",
+    "medical store Alandi Devachi",
+    "24 hours medical store Alandi",
+    "औषध दुकान आळंदी देवाची",
+    "pharmacy Alandi Pune",
+    "Santkrupa Medical",
+    "Santkrupa Medical and General Store",
+    "medical store near Alandi",
   ],
-  authors: [{ name: SHOP_NAME }],
-  metadataBase: new URL("https://santkrupa-medical.example.in"),
+  authors: [{ name: SHOP_NAME_EN }],
+  creator: SHOP_NAME_EN,
+  publisher: SHOP_NAME_EN,
+  metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${SHOP_NAME} | आपल्या आरोग्यासाठी विश्वासू मेडिकल स्टोअर`,
-    description:
-      "दैनंदिन आरोग्यविषयक गरजा, औषधे आणि आवश्यक हेल्थकेअर उत्पादने — उपलब्धतेनुसार एकाच ठिकाणी.",
+    title: SEO_TITLE,
+    description: SEO_DESCRIPTION,
+    url: "/",
+    siteName: SHOP_NAME_EN,
     type: "website",
-    locale: "mr_IN",
-    siteName: SHOP_NAME,
+    locale: SITE_LOCALE,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Santkrupa Medical & General Store — 24 hours medical store in Alandi Devachi",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SHOP_NAME} | विश्वासू मेडिकल स्टोअर`,
-    description:
-      "औषधे, हेल्थकेअर आणि दैनंदिन आरोग्यविषयक आवश्यक उत्पादने — उपलब्धतेनुसार.",
+    title: SEO_TITLE,
+    description: SEO_DESCRIPTION,
+    images: ["/opengraph-image"],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
@@ -50,15 +96,67 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const WEEK_DAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Pharmacy",
-  name: `${SHOP_NAME} (${SHOP_NAME_EN})`,
-  description:
-    "परिसरातील विश्वासू मेडिकल स्टोअर — दैनंदिन आरोग्यविषयक आवश्यक उत्पादने, उपलब्धतेनुसार.",
-  areaServed: "Maharashtra, IN",
-  inLanguage: "mr",
-  url: "https://santkrupa-medical.example.in",
+  "@graph": [
+    {
+      "@type": "Pharmacy",
+      "@id": `${SITE_URL}/#pharmacy`,
+      name: SHOP_NAME_EN,
+      alternateName: "संतकृपा मेडिकल अँड जनरल स्टोअर",
+      description: SEO_DESCRIPTION,
+      url: SITE_URL,
+      telephone: `+${SHOP_PHONE_LINK.replace(/^\+/, "")}`,
+      email: SHOP_EMAIL,
+      image: `${SITE_URL}/opengraph-image`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: SHOP_STREET,
+        addressLocality: SHOP_LOCALITY,
+        addressRegion: SHOP_STATE,
+        postalCode: SHOP_PIN,
+        addressCountry: SHOP_COUNTRY,
+      },
+      areaServed: [
+        {
+          "@type": "City",
+          name: `${SHOP_CITY}, ${SHOP_DISTRICT}, ${SHOP_STATE}`,
+        },
+        "Areas within 10 km of Alandi Devachi",
+      ],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: WEEK_DAYS,
+          opens: SHOP_HOURS_OPEN,
+          closes: SHOP_HOURS_CLOSE,
+        },
+      ],
+      hasMap: GOOGLE_MAPS_URL,
+      sameAs: [GOOGLE_MAPS_URL],
+      inLanguage: [...SITE_LANGUAGES],
+      priceRange: "₹",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SHOP_NAME_EN,
+      alternateName: SHOP_NAME,
+      inLanguage: [...SITE_LANGUAGES],
+      publisher: { "@id": `${SITE_URL}/#pharmacy` },
+    },
+  ],
 };
 
 export default function RootLayout({

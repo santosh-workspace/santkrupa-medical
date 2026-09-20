@@ -2,10 +2,14 @@ import Link from "next/link";
 import { Cross, MapPin, Phone } from "lucide-react";
 import {
   GOOGLE_MAPS_URL,
+  SHOP_ADDRESS,
+  SHOP_EMAIL,
   SHOP_NAME,
+  SHOP_NAME_EN,
   SHOP_PHONE_DISPLAY,
   SHOP_PHONE_LINK,
   SHOP_TAGLINE,
+  SHOP_TIMINGS,
   hasPhone,
 } from "@/config/shop";
 
@@ -32,6 +36,19 @@ export default function Footer() {
               {SHOP_TAGLINE} दैनंदिन आरोग्यविषयक गरजा आणि आवश्यक उत्पादने —
               उपलब्धतेनुसार — जवळच मिळाव्यात, हाच आमचा प्रयत्न.
             </p>
+            <address className="mt-4 max-w-sm text-[13.5px] leading-6 text-[#78716c] not-italic">
+              <span className="font-semibold text-[#44403c]">{SHOP_NAME_EN}</span>
+              <br />
+              {SHOP_ADDRESS}
+              <br />
+              {SHOP_TIMINGS} •{" "}
+              <a
+                href={`mailto:${SHOP_EMAIL}`}
+                className="underline underline-offset-4 hover:text-[#b35410]"
+              >
+                {SHOP_EMAIL}
+              </a>
+            </address>
             <div className="mt-5 flex flex-wrap gap-2.5">
               {hasPhone ? (
                 <a
